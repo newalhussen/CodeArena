@@ -1,0 +1,30 @@
+spring:
+  application:
+    name: codearena
+  config:
+    import: optional:file:.env[.properties]
+  datasource:
+    url: ${DB_URL:jdbc:postgresql://localhost:5432/codearena}
+    username: ${DB_USER:codearena}
+    password: ${DB_PASSWORD:codearena}
+
+server:
+  port: ${PORT:8080}
+  error:
+    include-message: never
+    include-stacktrace: never
+
+codearena:
+  # Allowed browser origins for state-changing requests (the Next.js app)
+  allowed-origins: ${ALLOWED_ORIGINS:http://localhost:3000}
+  cookie-secure: ${COOKIE_SECURE:false}
+  execution:
+    # local-js: sandboxed GraalJS worker process (JavaScript only). judge0: an external Judge0 CE service.
+    adapter: ${EXECUTION_ADAPTER:local-js}
+    wall-time-ms: ${EXECUTION_WALL_TIME_MS:20000}
+    heap-mb: ${EXECUTION_HEAP_MB:256}
+    statement-limit: ${EXECUTION_STATEMENT_LIMIT:30000000}
+    max-concurrent: ${EXECUTION_MAX_CONCURRENT:2}
+    judge0-url: ${JUDGE0_URL:}
+    judge0-token: ${JUDGE0_TOKEN:}
+  seed-problems: true

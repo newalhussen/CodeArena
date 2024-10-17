@@ -1,0 +1,12 @@
+
+node_modules/
+.next/
+dist/
+target/
+.env
+
+node_modules/
+.next/
+dist/
+target/
+.env

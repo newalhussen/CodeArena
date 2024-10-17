@@ -1,0 +1,11 @@
+{
+ "two-sum": "function twoSum(nums, target) { const seen = new Map(); for (let j = 0; j < nums.length; j++) { const i = seen.get(target - nums[j]); if (i !== undefined) return [i, j]; seen.set(nums[j], j); } }",
+ "fizz-buzz": "function fizzBuzz(n) { const r = []; for (let i = 1; i <= n; i++) r.push(i % 15 === 0 ? \"FizzBuzz\" : i % 3 === 0 ? \"Fizz\" : i % 5 === 0 ? \"Buzz\" : String(i)); return r; }",
+ "valid-parentheses": "function isValid(s) { const st = [], m = { \")\": \"(\", \"]\": \"[\", \"}\": \"{\" }; for (const c of s) { if (c in m) { if (st.pop() !== m[c]) return false; } else st.push(c); } return st.length === 0; }",
+ "maximum-subarray": "function maxSubArray(nums) { let best = nums[0], cur = 0; for (const x of nums) { cur = Math.max(x, cur + x); best = Math.max(best, cur); } return best; }",
+ "longest-substring-without-repeating": "function lengthOfLongestSubstring(s) { const last = new Map(); let start = 0, best = 0; for (let i = 0; i < s.length; i++) { const p = last.get(s[i]); if (p !== undefined && p >= start) start = p + 1; last.set(s[i], i); best = Math.max(best, i - start + 1); } return best; }",
+ "merge-intervals": "function merge(iv) { const s = iv.map((x) => [x[0], x[1]]).sort((a, b) => a[0] - b[0] || a[1] - b[1]); const out = []; for (const x of s) { const l = out[out.length - 1]; if (l && x[0] <= l[1]) l[1] = Math.max(l[1], x[1]); else out.push(x); } return out; }",
+ "coin-change": "function coinChange(coins, amount) { const dp = new Array(amount + 1).fill(Infinity); dp[0] = 0; for (let a = 1; a <= amount; a++) for (const c of coins) if (c <= a && dp[a - c] + 1 < dp[a]) dp[a] = dp[a - c] + 1; return dp[amount] === Infinity ? -1 : dp[amount]; }",
+ "trapping-rain-water": "function trap(h) { let l = 0, r = h.length - 1, lm = 0, rm = 0, w = 0; while (l < r) { if (h[l] < h[r]) { lm = Math.max(lm, h[l]); w += lm - h[l++]; } else { rm = Math.max(rm, h[r]); w += rm - h[r--]; } } return w; }",
+ "edit-distance": "function minDistance(a, b) { let prev = Array.from({ length: b.length + 1 }, (_, j) => j); for (let i = 1; i <= a.length; i++) { const cur = [i]; for (let j = 1; j <= b.length; j++) cur[j] = Math.min(prev[j] + 1, cur[j - 1] + 1, prev[j - 1] + (a[i - 1] === b[j - 1] ? 0 : 1)); prev = cur; } return prev[b.length]; }"
+}
